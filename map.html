@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c8b3b11c05e67edd7fd74d67afbc5f17 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <div style="
+        position: absolute; 
+        bottom: 130px; 
+        right: 180px; 
+        background-color: rgba(255, 255, 255, 0.8); 
+        padding: 15px; 
+        border-radius: 5px; 
+        font-size: 14px; 
+        width: 200px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        z-index: 9999;">
+        <b>Rank Categorization:</b><br>
+        <font color='red'>Ranks 1-5: Red</font><br>
+        <font color='blue'>Ranks 6-10: Blue</font><br>
+        <font color='green'>Ranks 11-15: Green</font><br>
+        <font color='purple'>Ranks 16-20: Purple</font>
+    </div>
+    
+            <div class="folium-map" id="map_c8b3b11c05e67edd7fd74d67afbc5f17" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c8b3b11c05e67edd7fd74d67afbc5f17 = L.map(
+                "map_c8b3b11c05e67edd7fd74d67afbc5f17",
+                {
+                    center: [20.5937, 78.9629],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_50a235bdb8c38de49714db8f196265e2 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_50a235bdb8c38de49714db8f196265e2.addTo(map_c8b3b11c05e67edd7fd74d67afbc5f17);
+        
+    
+            var marker_cluster_edce35d98216dd430f3de55f431f5b56 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_68913c83d4290f7951b975cb5fb297e1 = L.marker(
+                [27.1751, 78.0421],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_9ac0023672ff76af337ee6cebf85066a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_68913c83d4290f7951b975cb5fb297e1.setIcon(icon_9ac0023672ff76af337ee6cebf85066a);
+        
+    
+        var popup_77b93393451a2e87a5409eba722b10f2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5040528d408d7c1d56d247d2c1f6e77 = $(`<div id="html_e5040528d408d7c1d56d247d2c1f6e77" style="width: 100.0%; height: 100.0%;">             <b>Taj Mahal</b><br>             <i>Iconic symbol of India, built by Shah Jahan in memory of his wife Mumtaz Mahal.</i><br><br>             <b>Visitors:</b> 8,000,000<br>             <b>Rank:</b> 1<br>             <b>How to Reach:</b><br>By road from Agra or Delhi. Nearest airport: Agra.         </div>`)[0];
+                popup_77b93393451a2e87a5409eba722b10f2.setContent(html_e5040528d408d7c1d56d247d2c1f6e77);
+            
+        
+
+        marker_68913c83d4290f7951b975cb5fb297e1.bindPopup(popup_77b93393451a2e87a5409eba722b10f2)
+        ;
+
+        
+    
+    
+            marker_68913c83d4290f7951b975cb5fb297e1.bindTooltip(
+                `<div>
+                     Taj Mahal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_ced7cded1acfd6e559b3e98a9a335c6d = L.marker(
+                [28.5245, 77.1855],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_5e76d5db817851dd5803c8a6b3a1d261 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_ced7cded1acfd6e559b3e98a9a335c6d.setIcon(icon_5e76d5db817851dd5803c8a6b3a1d261);
+        
+    
+        var popup_c132057a6dc41c9e8c70a4de473bf141 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac82805f4b863896b12626c8bd7d6796 = $(`<div id="html_ac82805f4b863896b12626c8bd7d6796" style="width: 100.0%; height: 100.0%;">             <b>Qutub Minar</b><br>             <i>A UNESCO World Heritage site in Delhi, known for its historical importance and architecture.</i><br><br>             <b>Visitors:</b> 5,000,000<br>             <b>Rank:</b> 2<br>             <b>How to Reach:</b><br>By metro or cab from central Delhi. Nearest metro station: Qutub Minar.         </div>`)[0];
+                popup_c132057a6dc41c9e8c70a4de473bf141.setContent(html_ac82805f4b863896b12626c8bd7d6796);
+            
+        
+
+        marker_ced7cded1acfd6e559b3e98a9a335c6d.bindPopup(popup_c132057a6dc41c9e8c70a4de473bf141)
+        ;
+
+        
+    
+    
+            marker_ced7cded1acfd6e559b3e98a9a335c6d.bindTooltip(
+                `<div>
+                     Qutub Minar
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1d190a288ca607558b9413469c3975ba = L.marker(
+                [18.9236, 72.8347],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_86e8adbf0fa71876bb8aab4d3569ac13 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_1d190a288ca607558b9413469c3975ba.setIcon(icon_86e8adbf0fa71876bb8aab4d3569ac13);
+        
+    
+        var popup_ccce6eb17543ab03824d3707b9c0ec5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e4c2969d2b1f6eeeff9ff7b3d463350 = $(`<div id="html_5e4c2969d2b1f6eeeff9ff7b3d463350" style="width: 100.0%; height: 100.0%;">             <b>Gateway of India</b><br>             <i>Historic monument in Mumbai, commemorates the visit of King George V.</i><br><br>             <b>Visitors:</b> 3,000,000<br>             <b>Rank:</b> 3<br>             <b>How to Reach:</b><br>By boat from the Gateway, or cab from Mumbai central.         </div>`)[0];
+                popup_ccce6eb17543ab03824d3707b9c0ec5b.setContent(html_5e4c2969d2b1f6eeeff9ff7b3d463350);
+            
+        
+
+        marker_1d190a288ca607558b9413469c3975ba.bindPopup(popup_ccce6eb17543ab03824d3707b9c0ec5b)
+        ;
+
+        
+    
+    
+            marker_1d190a288ca607558b9413469c3975ba.bindTooltip(
+                `<div>
+                     Gateway of India
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0a52b6cd26d632fb22b30b220d76e313 = L.marker(
+                [28.6562, 77.241],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_6aee73460aba3b75f9b1fc418ee87b3b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_0a52b6cd26d632fb22b30b220d76e313.setIcon(icon_6aee73460aba3b75f9b1fc418ee87b3b);
+        
+    
+        var popup_7624dd55e65db00285077b593fa6e913 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7a71aaac488cbb7a5640057872660dc1 = $(`<div id="html_7a71aaac488cbb7a5640057872660dc1" style="width: 100.0%; height: 100.0%;">             <b>Red Fort</b><br>             <i>A symbol of Mughal architecture, famous for its fort and the Mughal emperors.</i><br><br>             <b>Visitors:</b> 2,500,000<br>             <b>Rank:</b> 4<br>             <b>How to Reach:</b><br>By metro or cab from Old Delhi. Nearest metro station: Chandni Chowk.         </div>`)[0];
+                popup_7624dd55e65db00285077b593fa6e913.setContent(html_7a71aaac488cbb7a5640057872660dc1);
+            
+        
+
+        marker_0a52b6cd26d632fb22b30b220d76e313.bindPopup(popup_7624dd55e65db00285077b593fa6e913)
+        ;
+
+        
+    
+    
+            marker_0a52b6cd26d632fb22b30b220d76e313.bindTooltip(
+                `<div>
+                     Red Fort
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_876d268bde7215dc60d35caeb580686f = L.marker(
+                [26.9196, 75.8523],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_f72ab57952cb0f7d8b03881a27974e5d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_876d268bde7215dc60d35caeb580686f.setIcon(icon_f72ab57952cb0f7d8b03881a27974e5d);
+        
+    
+        var popup_3542c7d91af1d6179d3dfc6e4f1e4bd7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9cfe4ca6889c38702b9003141c4ca8fd = $(`<div id="html_9cfe4ca6889c38702b9003141c4ca8fd" style="width: 100.0%; height: 100.0%;">             <b>Hawa Mahal</b><br>             <i>A palace with intricate architecture, known as the "Palace of Winds".</i><br><br>             <b>Visitors:</b> 2,000,000<br>             <b>Rank:</b> 5<br>             <b>How to Reach:</b><br>By cab from Jaipur, or by air to Jaipur Airport.         </div>`)[0];
+                popup_3542c7d91af1d6179d3dfc6e4f1e4bd7.setContent(html_9cfe4ca6889c38702b9003141c4ca8fd);
+            
+        
+
+        marker_876d268bde7215dc60d35caeb580686f.bindPopup(popup_3542c7d91af1d6179d3dfc6e4f1e4bd7)
+        ;
+
+        
+    
+    
+            marker_876d268bde7215dc60d35caeb580686f.bindTooltip(
+                `<div>
+                     Hawa Mahal
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a1d2e5def9f64412ba02ee11ef3da328 = L.marker(
+                [28.5535, 77.2588],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_9bc2226e8480119c0d8df48a09b44e43 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a1d2e5def9f64412ba02ee11ef3da328.setIcon(icon_9bc2226e8480119c0d8df48a09b44e43);
+        
+    
+        var popup_9dd908540bd8ba13f62d2f921fd3816d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_651ec5eb946a50c9a02ee9d94279c967 = $(`<div id="html_651ec5eb946a50c9a02ee9d94279c967" style="width: 100.0%; height: 100.0%;">             <b>Lotus Temple</b><br>             <i>A Lotus-shaped temple in Delhi, a Baháʼí House of Worship.</i><br><br>             <b>Visitors:</b> 1,800,000<br>             <b>Rank:</b> 6<br>             <b>How to Reach:</b><br>By metro or cab from Delhi. Nearest metro station: Kalkaji Mandir.         </div>`)[0];
+                popup_9dd908540bd8ba13f62d2f921fd3816d.setContent(html_651ec5eb946a50c9a02ee9d94279c967);
+            
+        
+
+        marker_a1d2e5def9f64412ba02ee11ef3da328.bindPopup(popup_9dd908540bd8ba13f62d2f921fd3816d)
+        ;
+
+        
+    
+    
+            marker_a1d2e5def9f64412ba02ee11ef3da328.bindTooltip(
+                `<div>
+                     Lotus Temple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f8b85147af6c62390d4a8ee892fd0fa0 = L.marker(
+                [28.6129, 77.2295],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_bd54ebd8b24b1561cdb0bbaa9c37c16b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_f8b85147af6c62390d4a8ee892fd0fa0.setIcon(icon_bd54ebd8b24b1561cdb0bbaa9c37c16b);
+        
+    
+        var popup_34e2b6ab6e0aa27588559a2cf993da46 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c1c2c4772cc9addff7ef1afd1b07a17f = $(`<div id="html_c1c2c4772cc9addff7ef1afd1b07a17f" style="width: 100.0%; height: 100.0%;">             <b>India Gate</b><br>             <i>A war memorial located in the heart of Delhi, commemorates soldiers who died during World War I.</i><br><br>             <b>Visitors:</b> 1,600,000<br>             <b>Rank:</b> 7<br>             <b>How to Reach:</b><br>By cab or metro from central Delhi. Nearest metro station: Central Secretariat.         </div>`)[0];
+                popup_34e2b6ab6e0aa27588559a2cf993da46.setContent(html_c1c2c4772cc9addff7ef1afd1b07a17f);
+            
+        
+
+        marker_f8b85147af6c62390d4a8ee892fd0fa0.bindPopup(popup_34e2b6ab6e0aa27588559a2cf993da46)
+        ;
+
+        
+    
+    
+            marker_f8b85147af6c62390d4a8ee892fd0fa0.bindTooltip(
+                `<div>
+                     India Gate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_a88458a7e56c862b9513ecebf84c1a3b = L.marker(
+                [20.55, 75.6982],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_03d13a841715ceb3762b0494b134fe1a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a88458a7e56c862b9513ecebf84c1a3b.setIcon(icon_03d13a841715ceb3762b0494b134fe1a);
+        
+    
+        var popup_6d9abdcb0b0ed0504f447a7660ea1072 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_01343ba56a62ab3c9673e40bb04dfe85 = $(`<div id="html_01343ba56a62ab3c9673e40bb04dfe85" style="width: 100.0%; height: 100.0%;">             <b>Ajanta Caves</b><br>             <i>Ancient caves known for their Buddhist art and architecture.</i><br><br>             <b>Visitors:</b> 1,200,000<br>             <b>Rank:</b> 8<br>             <b>How to Reach:</b><br>By road from Aurangabad or by flight to Aurangabad airport.         </div>`)[0];
+                popup_6d9abdcb0b0ed0504f447a7660ea1072.setContent(html_01343ba56a62ab3c9673e40bb04dfe85);
+            
+        
+
+        marker_a88458a7e56c862b9513ecebf84c1a3b.bindPopup(popup_6d9abdcb0b0ed0504f447a7660ea1072)
+        ;
+
+        
+    
+    
+            marker_a88458a7e56c862b9513ecebf84c1a3b.bindTooltip(
+                `<div>
+                     Ajanta Caves
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_b23bf6ce1bd908d8cbec320400c99752 = L.marker(
+                [25.2951, 91.8553],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_dcf3993fc241eccbfd0b8680de345df1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_b23bf6ce1bd908d8cbec320400c99752.setIcon(icon_dcf3993fc241eccbfd0b8680de345df1);
+        
+    
+        var popup_ebb586286ce8ffc0bd55322375dad7ea = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_56a874225775c2cd1c446e53561b190e = $(`<div id="html_56a874225775c2cd1c446e53561b190e" style="width: 100.0%; height: 100.0%;">             <b>Meghalaya</b><br>             <i>Known for its high rainfall and scenic beauty, rich biodiversity.</i><br><br>             <b>Visitors:</b> 1,000,000<br>             <b>Rank:</b> 9<br>             <b>How to Reach:</b><br>By road or taxi from Shillong, or via Guwahati Airport.         </div>`)[0];
+                popup_ebb586286ce8ffc0bd55322375dad7ea.setContent(html_56a874225775c2cd1c446e53561b190e);
+            
+        
+
+        marker_b23bf6ce1bd908d8cbec320400c99752.bindPopup(popup_ebb586286ce8ffc0bd55322375dad7ea)
+        ;
+
+        
+    
+    
+            marker_b23bf6ce1bd908d8cbec320400c99752.bindTooltip(
+                `<div>
+                     Meghalaya
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_57607ccbfd538f82c8d91ab120d7de7d = L.marker(
+                [25.32, 82.985],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_9cd8481634d26680dc7143490f64271a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_57607ccbfd538f82c8d91ab120d7de7d.setIcon(icon_9cd8481634d26680dc7143490f64271a);
+        
+    
+        var popup_f2998691ea4f63199bbab82fd5ce3028 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_729cb86d8a880e3d6540f22bf3458c40 = $(`<div id="html_729cb86d8a880e3d6540f22bf3458c40" style="width: 100.0%; height: 100.0%;">             <b>Varanasi</b><br>             <i>The spiritual and cultural hub of India, located on the banks of the Ganges.</i><br><br>             <b>Visitors:</b> 850,000<br>             <b>Rank:</b> 10<br>             <b>How to Reach:</b><br>By train to Varanasi Junction, or by flight to Varanasi Airport.         </div>`)[0];
+                popup_f2998691ea4f63199bbab82fd5ce3028.setContent(html_729cb86d8a880e3d6540f22bf3458c40);
+            
+        
+
+        marker_57607ccbfd538f82c8d91ab120d7de7d.bindPopup(popup_f2998691ea4f63199bbab82fd5ce3028)
+        ;
+
+        
+    
+    
+            marker_57607ccbfd538f82c8d91ab120d7de7d.bindTooltip(
+                `<div>
+                     Varanasi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_087f622cd495955b21bc6ac363eed593 = L.marker(
+                [22.0149, 88.7841],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_6f32820fdad3771290106844399b497d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_087f622cd495955b21bc6ac363eed593.setIcon(icon_6f32820fdad3771290106844399b497d);
+        
+    
+        var popup_2435a7fa309eab0e412a875edf25af44 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_29551845c1cc471b60da640c2b418727 = $(`<div id="html_29551845c1cc471b60da640c2b418727" style="width: 100.0%; height: 100.0%;">             <b>Sundarbans</b><br>             <i>Largest mangrove forest in the world, UNESCO World Heritage site.</i><br><br>             <b>Visitors:</b> 750,000<br>             <b>Rank:</b> 11<br>             <b>How to Reach:</b><br>By boat from Kolkata or by road from nearby towns.         </div>`)[0];
+                popup_2435a7fa309eab0e412a875edf25af44.setContent(html_29551845c1cc471b60da640c2b418727);
+            
+        
+
+        marker_087f622cd495955b21bc6ac363eed593.bindPopup(popup_2435a7fa309eab0e412a875edf25af44)
+        ;
+
+        
+    
+    
+            marker_087f622cd495955b21bc6ac363eed593.bindTooltip(
+                `<div>
+                     Sundarbans
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c1fc48bbea08c4570be9d5e2473c6220 = L.marker(
+                [26.0193, 76.3378],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_21e39e7abed01aad6840be18b1389d82 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c1fc48bbea08c4570be9d5e2473c6220.setIcon(icon_21e39e7abed01aad6840be18b1389d82);
+        
+    
+        var popup_62c3d366e43ba6f5a18678807e630364 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_650a470081c3a956a0052994d15de921 = $(`<div id="html_650a470081c3a956a0052994d15de921" style="width: 100.0%; height: 100.0%;">             <b>Ranthambore</b><br>             <i>National park in Rajasthan, known for Bengal tigers and wildlife.</i><br><br>             <b>Visitors:</b> 650,000<br>             <b>Rank:</b> 12<br>             <b>How to Reach:</b><br>By train to Sawai Madhopur or by cab from Jaipur.         </div>`)[0];
+                popup_62c3d366e43ba6f5a18678807e630364.setContent(html_650a470081c3a956a0052994d15de921);
+            
+        
+
+        marker_c1fc48bbea08c4570be9d5e2473c6220.bindPopup(popup_62c3d366e43ba6f5a18678807e630364)
+        ;
+
+        
+    
+    
+            marker_c1fc48bbea08c4570be9d5e2473c6220.bindTooltip(
+                `<div>
+                     Ranthambore
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fd7bffb876b0c9324b13920ea70bc550 = L.marker(
+                [30.0848, 78.276],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_114230c5fe2ceb5485817695a844bd16 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_fd7bffb876b0c9324b13920ea70bc550.setIcon(icon_114230c5fe2ceb5485817695a844bd16);
+        
+    
+        var popup_017332737bdd6bdaf3cb0b8d855cd49d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f510d24c55096781591c8a6021e5d463 = $(`<div id="html_f510d24c55096781591c8a6021e5d463" style="width: 100.0%; height: 100.0%;">             <b>Rishikesh</b><br>             <i>Known for spiritual teachings and adventure sports like rafting.</i><br><br>             <b>Visitors:</b> 600,000<br>             <b>Rank:</b> 13<br>             <b>How to Reach:</b><br>By road from Haridwar, or via Dehradun Airport.         </div>`)[0];
+                popup_017332737bdd6bdaf3cb0b8d855cd49d.setContent(html_f510d24c55096781591c8a6021e5d463);
+            
+        
+
+        marker_fd7bffb876b0c9324b13920ea70bc550.bindPopup(popup_017332737bdd6bdaf3cb0b8d855cd49d)
+        ;
+
+        
+    
+    
+            marker_fd7bffb876b0c9324b13920ea70bc550.bindTooltip(
+                `<div>
+                     Rishikesh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_07bb671d22d6e57222a7bc4994f2d27b = L.marker(
+                [13.6289, 79.4195],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_7780ac0d25b0328f81888b53b0fb9f65 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_07bb671d22d6e57222a7bc4994f2d27b.setIcon(icon_7780ac0d25b0328f81888b53b0fb9f65);
+        
+    
+        var popup_780e373053e7f7c0f67efb97f5b59c55 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdceb57fd641bb616f48a1940cfbef7d = $(`<div id="html_bdceb57fd641bb616f48a1940cfbef7d" style="width: 100.0%; height: 100.0%;">             <b>Tirupati</b><br>             <i>Famous pilgrimage site for the Lord Venkateswara Temple.</i><br><br>             <b>Visitors:</b> 500,000<br>             <b>Rank:</b> 14<br>             <b>How to Reach:</b><br>By road from Tirupati city, or by flight to Tirupati Airport.         </div>`)[0];
+                popup_780e373053e7f7c0f67efb97f5b59c55.setContent(html_bdceb57fd641bb616f48a1940cfbef7d);
+            
+        
+
+        marker_07bb671d22d6e57222a7bc4994f2d27b.bindPopup(popup_780e373053e7f7c0f67efb97f5b59c55)
+        ;
+
+        
+    
+    
+            marker_07bb671d22d6e57222a7bc4994f2d27b.bindTooltip(
+                `<div>
+                     Tirupati
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d72d96859f393f285957a8b5441608bb = L.marker(
+                [11.933, 79.8381],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_2d1f8834475ccfabf487d14a9c2b7044 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_d72d96859f393f285957a8b5441608bb.setIcon(icon_2d1f8834475ccfabf487d14a9c2b7044);
+        
+    
+        var popup_d765e5df22a8b3d9c5d1d0b3d3503a92 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_04c978ac33ab09ef123051c42335e012 = $(`<div id="html_04c978ac33ab09ef123051c42335e012" style="width: 100.0%; height: 100.0%;">             <b>Pondicherry</b><br>             <i>Known for its colonial architecture and beaches.</i><br><br>             <b>Visitors:</b> 450,000<br>             <b>Rank:</b> 15<br>             <b>How to Reach:</b><br>By flight to Pondicherry or by road from Chennai.         </div>`)[0];
+                popup_d765e5df22a8b3d9c5d1d0b3d3503a92.setContent(html_04c978ac33ab09ef123051c42335e012);
+            
+        
+
+        marker_d72d96859f393f285957a8b5441608bb.bindPopup(popup_d765e5df22a8b3d9c5d1d0b3d3503a92)
+        ;
+
+        
+    
+    
+            marker_d72d96859f393f285957a8b5441608bb.bindTooltip(
+                `<div>
+                     Pondicherry
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_43611ef0dee535d653cc233ce6b8aa4f = L.marker(
+                [32.1262, 77.082],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_4ac85a3eed442a90c61d1450bf34cb6b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_43611ef0dee535d653cc233ce6b8aa4f.setIcon(icon_4ac85a3eed442a90c61d1450bf34cb6b);
+        
+    
+        var popup_80970224d13111b02a2190909e12ae0a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52bbbf2dd88e56d6cc81b6e26e992168 = $(`<div id="html_52bbbf2dd88e56d6cc81b6e26e992168" style="width: 100.0%; height: 100.0%;">             <b>Shimla</b><br>             <i>A hill station known for its pleasant climate and natural beauty.</i><br><br>             <b>Visitors:</b> 400,000<br>             <b>Rank:</b> 16<br>             <b>How to Reach:</b><br>By train or by flight to Shimla, or by road from Chandigarh.         </div>`)[0];
+                popup_80970224d13111b02a2190909e12ae0a.setContent(html_52bbbf2dd88e56d6cc81b6e26e992168);
+            
+        
+
+        marker_43611ef0dee535d653cc233ce6b8aa4f.bindPopup(popup_80970224d13111b02a2190909e12ae0a)
+        ;
+
+        
+    
+    
+            marker_43611ef0dee535d653cc233ce6b8aa4f.bindTooltip(
+                `<div>
+                     Shimla
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2c060457a8812c8840eaaf12728b4f21 = L.marker(
+                [31.62, 74.6047],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_f468c9d50350cd36b11e34e2d9799b9b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_2c060457a8812c8840eaaf12728b4f21.setIcon(icon_f468c9d50350cd36b11e34e2d9799b9b);
+        
+    
+        var popup_8474e1e84a452bf749b6f23689172436 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_687ef367e97c506afa87dd5e426e2c92 = $(`<div id="html_687ef367e97c506afa87dd5e426e2c92" style="width: 100.0%; height: 100.0%;">             <b>Golden Temple</b><br>             <i>Sikhism’s holiest shrine, an important spiritual and cultural site.</i><br><br>             <b>Visitors:</b> 350,000<br>             <b>Rank:</b> 17<br>             <b>How to Reach:</b><br>By flight to Amritsar or by road from Delhi.         </div>`)[0];
+                popup_8474e1e84a452bf749b6f23689172436.setContent(html_687ef367e97c506afa87dd5e426e2c92);
+            
+        
+
+        marker_2c060457a8812c8840eaaf12728b4f21.bindPopup(popup_8474e1e84a452bf749b6f23689172436)
+        ;
+
+        
+    
+    
+            marker_2c060457a8812c8840eaaf12728b4f21.bindTooltip(
+                `<div>
+                     Golden Temple
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0222e0964c5d85ecb0b780d3e8fedcb4 = L.marker(
+                [24.833, 78.4204],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_959e5b9a7fad57aba26abc8d2e9fdbfe = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_0222e0964c5d85ecb0b780d3e8fedcb4.setIcon(icon_959e5b9a7fad57aba26abc8d2e9fdbfe);
+        
+    
+        var popup_f580696525679f653c44965c48036be8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_967e20b6f1eeba13ad7ccaa30a3c8e45 = $(`<div id="html_967e20b6f1eeba13ad7ccaa30a3c8e45" style="width: 100.0%; height: 100.0%;">             <b>Khajuraho</b><br>             <i>Famous for its temples, UNESCO World Heritage site.</i><br><br>             <b>Visitors:</b> 300,000<br>             <b>Rank:</b> 18<br>             <b>How to Reach:</b><br>By train or flight to Khajuraho, or by road from Jhansi.         </div>`)[0];
+                popup_f580696525679f653c44965c48036be8.setContent(html_967e20b6f1eeba13ad7ccaa30a3c8e45);
+            
+        
+
+        marker_0222e0964c5d85ecb0b780d3e8fedcb4.bindPopup(popup_f580696525679f653c44965c48036be8)
+        ;
+
+        
+    
+    
+            marker_0222e0964c5d85ecb0b780d3e8fedcb4.bindTooltip(
+                `<div>
+                     Khajuraho
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c92c6f63b74f2a5ce8e8a1185ffddb27 = L.marker(
+                [23.9631, 78.158],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_7e2d28d7ee74e139648c7b03604cd4ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_c92c6f63b74f2a5ce8e8a1185ffddb27.setIcon(icon_7e2d28d7ee74e139648c7b03604cd4ba);
+        
+    
+        var popup_a5f72135916f87068354c6c8e929b8b3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b50c35832b0e74c513d1698f14ae072d = $(`<div id="html_b50c35832b0e74c513d1698f14ae072d" style="width: 100.0%; height: 100.0%;">             <b>Sanchi</b><br>             <i>An ancient Buddhist site, home to the Sanchi Stupa.</i><br><br>             <b>Visitors:</b> 250,000<br>             <b>Rank:</b> 19<br>             <b>How to Reach:</b><br>By road or flight to Bhopal, or by train from nearby stations.         </div>`)[0];
+                popup_a5f72135916f87068354c6c8e929b8b3.setContent(html_b50c35832b0e74c513d1698f14ae072d);
+            
+        
+
+        marker_c92c6f63b74f2a5ce8e8a1185ffddb27.bindPopup(popup_a5f72135916f87068354c6c8e929b8b3)
+        ;
+
+        
+    
+    
+            marker_c92c6f63b74f2a5ce8e8a1185ffddb27.bindTooltip(
+                `<div>
+                     Sanchi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6dc82237c46fa88a81925ab1637506f8 = L.marker(
+                [23.8663, 78.3826],
+                {
+}
+            ).addTo(marker_cluster_edce35d98216dd430f3de55f431f5b56);
+        
+    
+            var icon_d226256e4abf6216945a32dcd74fb4c4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6dc82237c46fa88a81925ab1637506f8.setIcon(icon_d226256e4abf6216945a32dcd74fb4c4);
+        
+    
+        var popup_f2b350260520b3f992e4f5b294763c93 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cba6a7cd463ae86e08b1bf40918f48b = $(`<div id="html_5cba6a7cd463ae86e08b1bf40918f48b" style="width: 100.0%; height: 100.0%;">             <b>Kanha National Park</b><br>             <i>Known for its scenic beauty and the presence of tigers and other wildlife.</i><br><br>             <b>Visitors:</b> 200,000<br>             <b>Rank:</b> 20<br>             <b>How to Reach:</b><br>By train to Jabalpur or by road from nearby towns.         </div>`)[0];
+                popup_f2b350260520b3f992e4f5b294763c93.setContent(html_5cba6a7cd463ae86e08b1bf40918f48b);
+            
+        
+
+        marker_6dc82237c46fa88a81925ab1637506f8.bindPopup(popup_f2b350260520b3f992e4f5b294763c93)
+        ;
+
+        
+    
+    
+            marker_6dc82237c46fa88a81925ab1637506f8.bindTooltip(
+                `<div>
+                     Kanha National Park
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_edce35d98216dd430f3de55f431f5b56.addTo(map_c8b3b11c05e67edd7fd74d67afbc5f17);
+        
+    
+            tile_layer_50a235bdb8c38de49714db8f196265e2.addTo(map_c8b3b11c05e67edd7fd74d67afbc5f17);
+        
+    
+            marker_cluster_edce35d98216dd430f3de55f431f5b56.addTo(map_c8b3b11c05e67edd7fd74d67afbc5f17);
+        
+</script>
+</html>
